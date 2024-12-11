@@ -9,13 +9,13 @@ const userSchema = new mongoose.Schema({
     maxlength: [20, "Name cannot exceed 20 characters"],
     trim: true,
   },
-  
+
   email: {
     type: String,
     required: true,
     validate: [validator.isEmail, "Please provide a valid email address"],
     trim: true,
-    unique: [true,"User already Registered"] // Ensures no duplicate emails in the database
+    unique: [true, "User already Registered"], // Ensures no duplicate emails in the database
   },
   phone: {
     type: String,
@@ -31,6 +31,20 @@ const userSchema = new mongoose.Schema({
     maxlength: [20, "password cannot exceed 20 characters"],
     trim: true,
   },
+  avatar: {
+    public_id: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
+  },
+  createdAt:{
+    type:Date,
+    default:Date.now,
+  }
 });
 
 const User = mongoose.model("User", userSchema);
