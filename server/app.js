@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import  errorMiddleware  from "./middlewares/error.js";
 import userRouter from './routes/userRouter.js'
+import taskRouter from './routes/taskRouter.js'
 
 const app = express();
 
@@ -33,12 +34,7 @@ app.use(
 
 // Routes here
 app.use("/api/v1/user", userRouter)
-
-
-
-
-
-
+app.use("/api/v1/task", taskRouter)
 
 
 
