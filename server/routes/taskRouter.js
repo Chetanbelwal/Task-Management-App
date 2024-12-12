@@ -8,10 +8,10 @@ import {
   getSingleTask,
 } from "../controllers/taskController.js";
 
-router.route("/create").post(createTask);
-router.route("/delete").delete(deleteTask);
-router.route("/update").patch(updateTask);
-router.route("/get").get(getMyTask);
-router.route("/getSingle").get(getSingleTask);
+router.route("/post").post(createTask);
+router.route("/delete/:id").delete(deleteTask);
+router.route("/update/:id").put(updateTask);
+router.route("/mytask").get(getMyTask);
+router.route("/single/:id").get(getSingleTask);
 
 export default Router;
