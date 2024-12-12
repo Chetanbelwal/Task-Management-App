@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import fileUpload from "express-fileupload";
 
 const app = express();
 
@@ -17,9 +18,15 @@ const corsOptions = {
 
 // Apply CORS middleware with options
 app.use(cors(corsOptions));
-app.use(cookieParser)
+app.use(cookieParser);
 
 app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 
 export default app;
