@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
+import  errorMiddleware  from "./middlewares/error.js";
+import userRouter from './routes/userRouter.js'
 
 const app = express();
 
@@ -28,5 +30,18 @@ app.use(
     tempFileDir: "/tmp/",
   })
 );
+
+// Routes here
+app.use("/api/v1/user", userRouter)
+
+
+
+
+
+
+
+
+
+app.use(errorMiddleware)
 
 export default app;
