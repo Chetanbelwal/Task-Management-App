@@ -4,32 +4,26 @@ import validator from "validator";
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    minlength: [3, "Name should have a minimum of 3 characters"],
-    maxlength: [20, "Name cannot exceed 20 characters"],
-    trim: true,
+    required: [true, "Please provide your name!"],
+    minLength: [3, "Name must contain at least 3 characters!"],
+    maxLength: [30, "Name cannot exceed 30 characters!"],
   },
-
   email: {
     type: String,
-    required: true,
-    validate: [validator.isEmail, "Please provide a valid email address"],
-    trim: true,
-    unique: [true, "User already Registered"], // Ensures no duplicate emails in the database
+    required: [true, "Please provide your email!"],
+    unique: [true, "User already registered!"],
+    validate: [validator.isEmail, "Please provide valid email!"],
   },
   phone: {
-    type: String,
-    required: true,
-    minlength: [10, "Phone should be of Minimum 10 Digit "],
-    maxlength: [10, "Phone should be of Minimum 10 Digit"],
-    trim: true, // Removes leading and trailing spaces
+    type: Number,
+    required: [true, "Please provide your phone number!"],
   },
   password: {
     type: String,
-    required: true,
-    minlength: [3, "password should have a minimum of 3 characters"],
-    maxlength: [20, "password cannot exceed 20 characters"],
-    trim: true,
+    required: [true, "Please provide your password!"],
+    minLength: [8, "Password must contain at least 8 characters!"],
+    maxLength: [32, "Password cannot exceed 32 characters!"],
+    select: false,
   },
   avatar: {
     public_id: {
@@ -41,10 +35,10 @@ const userSchema = new mongoose.Schema({
       required: true,
     },
   },
-  createdAt:{
-    type:Date,
-    default:Date.now,
-  }
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const User = mongoose.model("User", userSchema);

@@ -1,5 +1,5 @@
 import ErrorHandler from "../middlewares/error.js";
-import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
+import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import cloudinary from "cloudinary";
 
 // -----------------------Registration Logic----------------//

@@ -1,5 +1,5 @@
 // Import statements
-import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
+import  catchAsyncErrors  from "../middlewares/catchAsyncErrors.js";
 // import ErrorHandler from "../middlewares/error.js";
 import  Task  from "../models/task-model.js";
 
