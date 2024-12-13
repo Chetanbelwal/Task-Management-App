@@ -14,4 +14,4 @@ router.route("/update/:id").put(updateTask);
 router.route("/mytask").get(getMyTask);
 router.route("/single/:id").get(getSingleTask);
 
-export default Router;
+export default router;

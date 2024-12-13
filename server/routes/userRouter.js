@@ -13,4 +13,4 @@ router.route("/me").get(myProfile);
 router.route("/register").post(register);
 
 
-export default Router;
+export default router;

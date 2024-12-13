@@ -1,6 +1,6 @@
 // Import statements
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
-import ErrorHandler from "../middlewares/error.js";
+// import ErrorHandler from "../middlewares/error.js";
 import  Task  from "../models/task-model.js";
 
 // Task controller functions

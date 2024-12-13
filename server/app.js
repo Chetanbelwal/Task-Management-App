@@ -3,9 +3,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
-import  errorMiddleware  from "./middlewares/error.js";
-import userRouter from './routes/userRouter.js'
-import taskRouter from './routes/taskRouter.js'
+import errorMiddleware from "./middlewares/error.js";
+import userRouter from "./routes/userRouter.js";
+
+import taskRouter from "./routes/taskRouter.js";
 
 const app = express();
 
@@ -21,7 +22,7 @@ const corsOptions = {
 
 // Apply CORS middleware with options
 app.use(cors(corsOptions));
-app.use(cookieParser);
+app.use(cookieParser());
 
 app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
@@ -33,11 +34,9 @@ app.use(
 );
 
 // Routes here
-app.use("/api/v1/user", userRouter)
-app.use("/api/v1/task", taskRouter)
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/task", taskRouter);
 
-
-
-app.use(errorMiddleware)
+app.use(errorMiddleware);
 
 export default app;
