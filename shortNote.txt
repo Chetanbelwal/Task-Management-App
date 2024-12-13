@@ -1,0 +1,20 @@
+Task Management App
+
+
+--< Creating app.js server.js file then calling middlewares dotenv config, cookieparser, express.json, urlEncodedTrue 
+--> Creating db.js file and exporting connectToDb method then calling that method in server.js file 
+--> creating models task and user
+--> Calling fileupload from express fileupload and use it as middleware before connectodb method
+--> using cloudinary in server.js config it and pass api, name , secretkey
+-->creating catchAsyncError and errorMiddleware
+--> In errormiddleware if we want to throw error we can use next(error) and if we want to pass status code we can throw instance of errorHandler class with status code.  now on app.js call it in end  of  routes
+--> wrap all controllers with catchAsyncError middleware
+--> create routes and call it in app.js
+--> Creating controller for user to handle login logout register facility then creating its router then calling it in app.js with initial route app.use("/api/v1/user", userRoute)
+--> Creating controller for task to handle create update delete get task facility then creating its router then calling it in app.js with initial route app.use("/api/v1/task", taskRoute)
+
+-->Registration Logic -- 
+1 Check if req.files have something or not, if not throw error that avatar required
+2 check if avatar we have is in allowed formats, if not throw error that these formats are required
+3
+
