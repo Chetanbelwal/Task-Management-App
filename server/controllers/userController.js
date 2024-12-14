@@ -3,13 +3,14 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import cloudinary from "cloudinary";
 import User from "../models/user-model.js";
 
+//-----------------------------------------------------------
 // -----------------------Registration Logic----------------//
+//----------------------------------------------------------
 
 const register = catchAsyncErrors(async (req, res, next) => {
   // Logic for registering a user
   //   If we didn't get any File/avatar
   if (!req.files || Object.keys(req.files).length === 0) {
-    
     return next(new ErrorHandler("User Avatar Required!", 400));
   }
 
@@ -77,13 +78,35 @@ const register = catchAsyncErrors(async (req, res, next) => {
   res.status(201).json({
     success: true,
     message: "User registered successfully!",
+    user
   });
 });
 
-// -----------------------Login Logic----------------//
+//---------------------------------------------------------------------
+// ----------------------------------------Login Logic----------------//
+//----------------------------------------------------------------------
 
 const login = catchAsyncErrors(async (req, res, next) => {
-  // Logic for logging in a user
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return next(new ErrorHandler("Please provide email and password!", 400));
+  }
+  const user = await User.findOne({ email }).select("+password");
+  if (!user) {
+    return next(new ErrorHandler("Invalid email  or password!", 400));
+  }
+  const isPasswordMatched = await user.comparePassword(password);
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Invalid email  or password!", 400));
+  }
+
+// Send response back to the client
+res.status(201).json({
+  success: true,
+  message: "User Logged In successfully!",
+  user
+});
+
 });
 
 const logout = catchAsyncErrors(async (req, res, next) => {
