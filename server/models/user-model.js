@@ -15,8 +15,11 @@ const userSchema = new mongoose.Schema({
     validate: [validator.isEmail, "Please provide valid email!"],
   },
   phone: {
-    type: Number,
-    required: [true, "Please provide your phone number!"],
+    type: String,
+    required: true,
+    minlength: [10, "Phone should be of Minimum 10 Digit "],
+    maxlength: [10, "Phone should be of Minimum 10 Digit"],
+    trim: true, // Removes leading and trailing spaces
   },
   password: {
     type: String,

@@ -8,7 +8,6 @@ class ErrorHandler extends Error {
 }
 
 export const errorMiddleware = (err, req, res, next) => {
-  console.log(`ye hum error muddle wear ma hai`)
   err.message = err.message || "Internal Server Error";
   err.statusCode = err.statusCode || 500;
 
