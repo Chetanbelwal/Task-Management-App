@@ -99,6 +99,12 @@ const login = catchAsyncErrors(async (req, res, next) => {
   sendToken("User Logged In!", user, res, 200);
 });
 
+
+//---------------------------------------------------------------------
+// ----------------------------------------Logout Logic----------------//
+//----------------------------------------------------------------------
+
+
 const logout = catchAsyncErrors((req, res, next) => {
   res
     .status(200)
@@ -112,8 +118,17 @@ const logout = catchAsyncErrors((req, res, next) => {
     });
 });
 
-const myProfile = catchAsyncErrors(async (req, res, next) => {
-  // Logic for fetching user profile
+
+//---------------------------------------------------------------------
+// ----------------------------------------My Profile Logic----------------//
+//----------------------------------------------------------------------
+
+const myProfile = catchAsyncErrors((req, res, next) => {
+  const user = req.user;
+  res.status(200).json({
+    success: true,
+    user,
+  });
 });
 
 export { register, login, logout, myProfile };

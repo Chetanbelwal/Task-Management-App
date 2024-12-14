@@ -7,9 +7,11 @@ import {
   myProfile,
 } from "../controllers/userController.js";
 
+import { isAuthenticated } from "../middlewares/auth.js";
+
 router.route("/login").post(login);
-router.route("/logout").get(logout);
-router.route("/me").get(myProfile);
+router.route("/logout").get(isAuthenticated,logout);
+router.route("/me").get(isAuthenticated,myProfile);
 router.route("/register").post(register);
 
 
