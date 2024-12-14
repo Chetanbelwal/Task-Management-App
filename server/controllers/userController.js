@@ -2,6 +2,7 @@ import ErrorHandler from "../middlewares/error.js";
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import cloudinary from "cloudinary";
 import User from "../models/user-model.js";
+import { sendToken } from "../utils/jwtToken.js";
 
 //-----------------------------------------------------------
 // -----------------------Registration Logic----------------//
@@ -74,12 +75,7 @@ const register = catchAsyncErrors(async (req, res, next) => {
     },
   });
 
-  // Send response back to the client
-  res.status(201).json({
-    success: true,
-    message: "User registered successfully!",
-    user
-  });
+  sendToken("User Registered!", user, res, 200);
 });
 
 //---------------------------------------------------------------------
@@ -100,17 +96,20 @@ const login = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email  or password!", 400));
   }
 
-// Send response back to the client
-res.status(201).json({
-  success: true,
-  message: "User Logged In successfully!",
-  user
+  sendToken("User Logged In!", user, res, 200);
 });
 
-});
-
-const logout = catchAsyncErrors(async (req, res, next) => {
-  // Logic for logging out a user
+const logout = catchAsyncErrors((req, res, next) => {
+  res
+    .status(200)
+    .cookie("token", "", {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+    })
+    .json({
+      success: true,
+      message: "User Logged Out!",
+    });
 });
 
 const myProfile = catchAsyncErrors(async (req, res, next) => {

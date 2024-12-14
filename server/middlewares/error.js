@@ -1,9 +1,7 @@
 class ErrorHandler extends Error {
   constructor(message, statusCode) {
-    console.log(`mesage is ${message} and status code is ${statusCode}`);
     super(message);
     this.statusCode = statusCode;
-    console.log(`second mesage is ${message} and status code is ${statusCode}`);
   }
 }
 
