@@ -1,6 +1,7 @@
 import ErrorHandler from "../middlewares/error.js";
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import cloudinary from "cloudinary";
+import User from "../models/user-model.js";
 
 // -----------------------Registration Logic----------------//
 
@@ -8,6 +9,7 @@ const register = catchAsyncErrors(async (req, res, next) => {
   // Logic for registering a user
   //   If we didn't get any File/avatar
   if (!req.files || Object.keys(req.files).length === 0) {
+    
     return next(new ErrorHandler("User Avatar Required!", 400));
   }
 
