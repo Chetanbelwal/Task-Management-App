@@ -16,5 +16,42 @@ Task Management App
 -->Registration Logic -- 
 1 Check if req.files have something or not, if not throw error that avatar required
 2 check if avatar we have is in allowed formats, if not throw error that these formats are required
-3
+3 grab name email other details from req.body
+4 check if email already exists
+5 Upload Avatar to Cloudinary
+6 if avatar uploading gives an issue handle it
+7 store all the details in data base with avatar having Cloudinary upload details (public_id and secure_url).
+8 send the response
 
+--> Check in postman if api works or not user data as form-data because we also want  to attach files
+--> use schemaname.pre method for hashing password
+--> use schemaname.methods to create a method that compare password
+
+
+--> Login Logic
+1 Get email and password from req.body
+2 check if email exists or not in db
+3 check if password compared is right or not by entered password
+
+--> A beautiful Thing we have done here to generate Token is we will be having amethod on schema that will generate token
+now we will create a jwtToken file that will taken message userdata response and status code as parameter so what will happen when user will register successfully we will call this method we have in jwtToken file and pass all required parameters then that method will call another method we have on schema to generate token and set cookies also with options (please check code format)
+const options = {
+      expires: new Date(
+        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+      ),
+      httpOnly: true,
+    };
+    res.status(statusCode).cookie("token", token, options).json({
+      success: true,
+      user,
+      message,
+      token,
+    });
+
+
+-->To Logout simply all above details we will send as response but will keep token as blank and expires time as currentTime
+--> Now we will create auth middleware so as we are using concept of Cookies so while Loggin cookies will store the Token so we will get token from req.cookies and use jwt.verify to check if Token is valid or not
+also we will get req.user so whoever use this middleware can use req.user for user details whose token is generated
+
+
+--> Now myProfile want to get user data and that can be easily egt as we will use isAuthenticated middleware before myProfile and that middleware have use data by req.user so simply we will get it from req.user

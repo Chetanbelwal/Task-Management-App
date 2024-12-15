@@ -7,11 +7,12 @@ import {
   getMyTask,
   getSingleTask,
 } from "../controllers/taskController.js";
+import { isAuthenticated } from "../middlewares/auth.js";
 
-router.route("/post").post(createTask);
-router.route("/delete/:id").delete(deleteTask);
-router.route("/update/:id").put(updateTask);
-router.route("/mytask").get(getMyTask);
-router.route("/single/:id").get(getSingleTask);
+router.route("/post").post(isAuthenticated, createTask);
+router.route("/delete/:id").delete(isAuthenticated, deleteTask);
+router.route("/update/:id").put(isAuthenticated, updateTask);
+router.route("/mytask").get(isAuthenticated, getMyTask);
+router.route("/single/:id").get(isAuthenticated, getSingleTask);
 
 export default router;
