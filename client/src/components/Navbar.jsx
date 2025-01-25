@@ -8,6 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
+
 function Header({
   setTasks,
   setIsAuthenticated,
@@ -15,6 +16,7 @@ function Header({
   setTaskTitle,
 }) {
   const [allTasks, setAllTasks] = useState([]);
+  const API = import.meta.env.VITE_APP_API;
   // Fetch tasks from the server when the component mounts
   useEffect(() => {
     fetchTasks();
@@ -24,7 +26,7 @@ function Header({
   const fetchTasks = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/v1/task/mytask",
+        `${API}/api/v1/task/mytask`,
         { withCredentials: true }
       );
       setAllTasks(response.data.tasks);
@@ -37,7 +39,7 @@ function Header({
   const handleLogout = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/user/logout",
+        `${API}/api/v1/user/logout`,
         { withCredentials: "true" }
       );
       toast.success(data.message);

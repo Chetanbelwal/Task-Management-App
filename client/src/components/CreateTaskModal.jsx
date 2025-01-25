@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal, Stack } from "react-bootstrap";
 import toast from "react-hot-toast";
 
+
 const CreateTaskModal = ({
   showCreateModal,
   handleCreateModalClose,
@@ -10,11 +11,12 @@ const CreateTaskModal = ({
 }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const API = import.meta.env.VITE_APP_API;
 
   const handleCreateTask = async () => {
     await axios
       .post(
-        "http://localhost:4000/api/v1/task/post",
+        `${API}/api/v1/task/post`,
         { title, description },
         {
           withCredentials: true,

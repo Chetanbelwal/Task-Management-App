@@ -5,10 +5,11 @@ import toast from "react-hot-toast";
 
 const ViewTaskModal = ({ showViewModal, handleViewModalClose, id }) => {
   const [task, setTask] = useState([]);
+  const API = import.meta.env.VITE_APP_API;
   useEffect(() => {
     const getSingleTask = async () => {
       await axios
-        .get(`http://localhost:4000/api/v1/task/single/${id}`, {
+        .get(`${API}/api/v1/task/single/${id}`, {
           withCredentials: true,
         })
         .then((res) => {

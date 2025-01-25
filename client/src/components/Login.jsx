@@ -6,15 +6,17 @@ import { useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link, Navigate } from "react-router-dom";
 
+
 function Login({ isAuthenticated, setIsAuthenticated }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const API = import.meta.env.VITE_APP_API;
 
   const handleLogin = async (e) => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:4000/api/v1/user/login",
+        `${API}/api/v1/user/login`,
         { email, password },
         {
           withCredentials: true,

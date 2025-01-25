@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal, Stack } from "react-bootstrap";
 import toast from "react-hot-toast";
 
+
 const UpdateTaskModal = ({
   showUpdateModal,
   handleUpdateModalClose,
@@ -13,11 +14,12 @@ const UpdateTaskModal = ({
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("incomplete");
   const [archived, setArchived] = useState(false);
+  const API = import.meta.env.VITE_APP_API;
 
   useEffect(() => {
     const getSingleTask = async () => {
       await axios
-        .get(`http://localhost:4000/api/v1/task/single/${id}`, {
+        .get(`${API}/api/v1/task/single/${id}`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -38,7 +40,7 @@ const UpdateTaskModal = ({
   const handleUpdateTask = async () => {
     await axios
       .put(
-        `http://localhost:4000/api/v1/task/update/${id}`,
+        `${API}/api/v1/task/update/${id}`,
         {
           title,
           description,

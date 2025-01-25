@@ -15,10 +15,11 @@ const Home = ({ isAuthenticated, tasks, setTasks, taskTitle }) => {
   const [showViewModal, setShowViewModal] = useState(false);
   const [viewTaskId, setViewTaskId] = useState(null);
   const [updatedTaskId, setUpdateTaskId] = useState(null);
+  const API = import.meta.env.VITE_APP_API;
 
   const deleteTask = async (id) => {
     await axios
-      .delete(`http://localhost:4000/api/v1/task/delete/${id}`, {
+      .delete(`${API}/api/v1/task/delete/${id}`, {
         withCredentials: true,
       })
       .then((res) => {

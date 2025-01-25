@@ -6,12 +6,14 @@ import Form from "react-bootstrap/Form";
 import { Container } from "react-bootstrap";
 import { Link, Navigate } from "react-router-dom";
 
+
 function Register({ isAuthenticated, setIsAuthenticated }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [avatar, setAvatar] = useState("");
+  const API = import.meta.env.VITE_APP_API;
 
   const avatarHandler = (e) => {
     const file = e.target.files[0];
@@ -27,7 +29,7 @@ function Register({ isAuthenticated, setIsAuthenticated }) {
     formData.append("password", password);
     formData.append("avatar", avatar);
     await axios
-      .post("http://localhost:4000/api/v1/user/register", formData, {
+      .post(`${API}/api/v1/user/register`, formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       })

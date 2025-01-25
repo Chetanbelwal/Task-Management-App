@@ -7,17 +7,19 @@ import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [user, setUser] = useState({});
   const [taskTitle, setTaskTitle] = useState("Tasks");
+  const API = import.meta.env.VITE_APP_API;
 
   useEffect(() => {
     const handleGetUser = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/user/me",
+          `${API}/api/v1/user/me`,
           { withCredentials: true }
         );
         setIsAuthenticated(true);
