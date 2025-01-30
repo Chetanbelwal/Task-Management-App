@@ -5,7 +5,7 @@
 Task Management App is a robust and user-friendly application designed to help users manage their tasks efficiently. Built on the MERN stack (MongoDB, Express.js, React, and Node.js), this app allows users to create, update, delete, and organize tasks seamlessly. Additionally, it supports file uploads using Cloudinary, enabling users to upload their avatar/profile picture during registration. 🚀
 
 ## Content
-- Technology Stack(#technology-stack)
+- [Technology Stack](#technology-stack)
 - [Project Type](#project-type)
 - [Deployed App](#deployed-app)
 - [Directory Structure](#directory-structure)
